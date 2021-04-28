@@ -8,9 +8,10 @@ function delay(time) {
 }
 async function delayPromise() {
   await delay(5000);
-  console.log("finish!");
+  console.log("[delayPromise] finish!");
 }
-console.log(delayPromise());
+console.log("[delayPromise] start");
+delayPromise();
 
 /*
  * Flatten Deep
@@ -51,14 +52,16 @@ function fib(indexNum) {
 
 console.log("Fib: ", fib(5));
 
-// 隨機重新排列
+/*
+ *隨機重新排列
+ */
 // Solutio 1: 此寫法會有效能問題：若隨機 index 一直都取到相同的數值時
 function reRandom(input) {
   let ret = [];
   let inputArr = input;
 
   for (let i = 0; i < inputArr.length; i++) {
-    console.log("Solution 1");
+    console.log("Solution 1, run " + i + " times");
     let index = Math.floor(Math.random() * inputArr.length);
     if (inputArr[index] !== -1) {
       ret.push(inputArr[index]);
@@ -86,3 +89,28 @@ function reRandom2(input) {
 
 console.log("reRandom: ", reRandom([1, 3, 4, 5, 7, 0, 9]));
 console.log("reRandom: ", reRandom2([1, 3, 4, 5, 7, 0, 9]));
+
+/*
+ * 二分樹查找，找到數值所在 Index
+ */
+function binarySearch(arr, num, first, end) {
+  let firstIdx = first || 0;
+  let lastIdx = end || arr.length - 1;
+  let midIdx = Math.floor((firstIdx + lastIdx) / 2);
+  if (midIdx === 0) {
+    return -1;
+  }
+  if (num < arr[midIdx]) {
+    // left side
+    return binarySearch(arr, num, 0, midIdx);
+  } else if (num > arr[midIdx]) {
+    // right side
+    return binarySearch(arr, num, midIdx + 1, arr.length - 1);
+  } else {
+    return midIdx;
+  }
+}
+
+// 已排列好的 array
+let bsArray = [1, 3, 4, 7, 8, 11, 24];
+console.log("binarySearch index:", binarySearch(bsArray, 2));
