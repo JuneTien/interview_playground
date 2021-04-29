@@ -13,7 +13,7 @@ async function delayPromise() {
 console.log("[delayPromise] start");
 delayPromise();
 
-/*
+/**
  * Flatten Deep
  *
  * ex:
@@ -35,7 +35,7 @@ async function flatten(arr) {
 flatten(arr);
 console.log("Flatten: ", ret);
 
-/*
+/**
  * 費氏數列
  *
  * ex:
@@ -52,7 +52,7 @@ function fib(indexNum) {
 
 console.log("Fib: ", fib(5));
 
-/*
+/**
  *隨機重新排列
  */
 // Solutio 1: 此寫法會有效能問題：若隨機 index 一直都取到相同的數值時
@@ -90,7 +90,7 @@ function reRandom2(input) {
 console.log("reRandom: ", reRandom([1, 3, 4, 5, 7, 0, 9]));
 console.log("reRandom: ", reRandom2([1, 3, 4, 5, 7, 0, 9]));
 
-/*
+/**
  * 二分樹查找，找到數值所在 Index
  */
 function binarySearch(arr, num, first, end) {
@@ -114,3 +114,21 @@ function binarySearch(arr, num, first, end) {
 // 已排列好的 array
 let bsArray = [1, 3, 4, 7, 8, 11, 24];
 console.log("binarySearch index:", binarySearch(bsArray, 2));
+
+/**
+ * UDN 買東西考題
+ */
+var sortName = {
+  resorts: ["Andy", "Brian", "Clover"],
+  print: function (delay = 1000) {
+    // 箭頭函式
+    setTimeout(() => {
+      console.log("1 >>", this.resorts.join(","));
+    }, delay);
+    // 普通函式
+    setTimeout(function () {
+      console.log("2 >>", this.resorts);
+    }, delay);
+  }
+};
+sortName.print();
