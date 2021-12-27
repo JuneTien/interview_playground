@@ -1,5 +1,7 @@
 import "./styles.css";
 
+const LOG_ENABLE = false;
+
 /*
  * Delay promise
  */
@@ -8,9 +10,9 @@ function delay(time) {
 }
 async function delayPromise() {
   await delay(5000);
-  console.log("[delayPromise] finish!");
+  LOG_ENABLE && console.log("[delayPromise] finish!");
 }
-console.log("[delayPromise] start");
+LOG_ENABLE && console.log("[delayPromise] start");
 delayPromise();
 
 /**
@@ -33,7 +35,7 @@ async function flatten(arr) {
 }
 
 flatten(arr);
-console.log("Flatten: ", ret);
+LOG_ENABLE && console.log("Flatten: ", ret);
 
 /**
  * 費氏數列
@@ -50,10 +52,10 @@ function fib(indexNum) {
   }
 }
 
-console.log("Fib: ", fib(5));
+LOG_ENABLE && console.log("Fib: ", fib(5));
 
 /**
- *隨機重新排列
+ * 隨機重新排列
  */
 // Solutio 1: 此寫法會有效能問題：若隨機 index 一直都取到相同的數值時
 function reRandom(input) {
@@ -61,7 +63,7 @@ function reRandom(input) {
   let inputArr = input;
 
   for (let i = 0; i < inputArr.length; i++) {
-    console.log("Solution 1, run " + i + " times");
+    LOG_ENABLE && console.log("Solution 1, run " + i + " times");
     let index = Math.floor(Math.random() * inputArr.length);
     if (inputArr[index] !== -1) {
       ret.push(inputArr[index]);
@@ -79,7 +81,7 @@ function reRandom2(input) {
   let inputArr = input;
   let inputArrLegth = inputArr.length;
   for (let i = 0; i < inputArrLegth; i++) {
-    console.log("Solution 2");
+    LOG_ENABLE && console.log("Solution 2");
     const randomNum = inputArr[Math.floor(Math.random() * inputArr.length)];
     ret.push(randomNum);
     inputArr.splice(inputArr.indexOf(randomNum), 1);
@@ -87,8 +89,8 @@ function reRandom2(input) {
   return ret;
 }
 
-console.log("reRandom: ", reRandom([1, 3, 4, 5, 7, 0, 9]));
-console.log("reRandom: ", reRandom2([1, 3, 4, 5, 7, 0, 9]));
+LOG_ENABLE && console.log("reRandom: ", reRandom([1, 3, 4, 5, 7, 0, 9]));
+LOG_ENABLE && console.log("reRandom2: ", reRandom2([1, 3, 4, 5, 7, 0, 9]));
 
 /**
  * 二分樹查找，找到數值所在 Index
@@ -113,7 +115,7 @@ function binarySearch(arr, num, first, end) {
 
 // 已排列好的 array
 let bsArray = [1, 3, 4, 7, 8, 11, 24];
-console.log("binarySearch index:", binarySearch(bsArray, 2));
+LOG_ENABLE && console.log("binarySearch index:", binarySearch(bsArray, 2));
 
 /**
  * UDN 買東西考題
@@ -123,11 +125,11 @@ var sortName = {
   print: function (delay = 1000) {
     // 箭頭函式
     setTimeout(() => {
-      console.log("1 >>", this.resorts.join(","));
+      LOG_ENABLE && console.log("1 >>", this.resorts.join(","));
     }, delay);
     // 普通函式
     setTimeout(function () {
-      console.log("2 >>", this.resorts);
+      LOG_ENABLE && console.log("2 >>", this.resorts);
     }, delay);
   }
 };
