@@ -2,6 +2,32 @@ import "./styles.css";
 
 const LOG_ENABLE = false;
 
+/**
+ * Crypto.com 考題
+ * Chunk
+ *
+ * ex:
+ * Chunk(['a', 'b', 'c', 'd'], 2) => [['a', 'b'], ['c', 'd']]
+ * Chunk(['a', 'b', 'c', 'd'], 3) => [['a', 'b', 'c'], ['d']]
+ */
+const Chunk = (array, num) => {
+  const tmp = [];
+  array.reduce((acc, cur, index) => {
+    if (acc.length < num) {
+      if (index === array.length - 1) {
+        tmp.push(acc);
+      }
+    } else {
+      tmp.push(acc);
+      acc = [];
+    }
+    acc.push(cur);
+    return acc;
+  }, []);
+  return JSON.stringify(tmp);
+};
+LOG_ENABLE && console.log(Chunk([1, 2, 3, 4, 5], 3));
+
 /*
  * Delay promise
  */
